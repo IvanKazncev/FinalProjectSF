@@ -5,9 +5,10 @@ import org.openqa.selenium.WebDriver;
 
 public record CityMenuPage(WebDriver webDriver) {
 
-    private final static String ACTIVE_CITY_SPAN_XPATH = "//a[@data-testid='header__about-slogan-text_link']";
+    private final static String ACTIVE_CITY_SPAN_CLASSNAME = "//H1[@id='main_title']";
 
     public String getCurrentActiveCity() {
-        return webDriver.findElement(By.xpath(ACTIVE_CITY_SPAN_XPATH)).getText();
+        return webDriver.findElement(By.xpath(ACTIVE_CITY_SPAN_CLASSNAME)).getText();
+
     }
 }
