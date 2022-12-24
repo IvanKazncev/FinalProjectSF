@@ -1,14 +1,16 @@
 #Gherkin
-Feature: Find weather
-  #Позитивный сценарий: выбираем город саратов и получем погоду для саратова
-  Scenario: chose city
-    Given url of weather 'https://yandex.ru/pogoda/'
-    Then  chose city 'Волжский район, Саратов'
-    Then  Click on 'Волжский район, Саратов'
-    And assert that chosen city is 'Волжский район, Саратов'
-  #Негатинвый сценарий: выбираем несушествующий город, получаем соответствуещее уведомление
-  Scenario: chose absent city
-    Given url of weather 'https://yandex.ru/pogoda/'
-    Then  chose city 'Fogea'
-    And assert that user got message 'По вашему запросу ничего не нашлось'
+Feature: Shopiland tests
+  #Позитивный сценарий:после выполнение поиска нажатие на логотип возвращает на главную страницу
+  Scenario: Return to main page
+    Given url 'https://shopiland.ru/'
+    Then  click button 'Наушники беспроводные'
+    Then  click 'logo' button
+    And assert that we back for 'main page'
+  #Позитивный сценарий:При происке первым всегда идет товар с большим колвом отзывов (рейтиг)
+  Scenario: Rating
+    Given url 'https://shopiland.ru/'
+    Then  click button 'Наушники беспроводные'
+    Then look on 'ratingFirstPicture'
+    Then look2 on 'ratingSecondPicture'
+    And assert that 'ratingFirstPicture' more then 'ratingSecondPicture'
 
