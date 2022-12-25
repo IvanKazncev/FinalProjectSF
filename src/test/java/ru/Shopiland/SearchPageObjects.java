@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 public record SearchPageObjects(WebDriver webDriver) {
 
     private static final String SEARCH_BUTTON = "(//A[@class='css-1xrqwep'])[1]\n";
-    private static final String SARATOV = "Волжский район, Саратов";
     private static final String ERROR_MESSAGE_SPAN_CLASS = "//H1[@class='title title_level_1'][text()='По вашему запросу ничего не нашлось']";
     private static final String URL = "https://shopiland.ru/";
 
