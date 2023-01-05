@@ -1,11 +1,13 @@
 package ru.Shopiland;
-
+import org.openqa.selenium.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import java.util.ArrayList;
+import java.awt.*;
 import java.time.Duration;
 
 
@@ -101,15 +103,16 @@ public class StepDefinitions {
         Assert.assertEquals(text,"block");
     }
     @Test
-    public void Test8() {
+    public void Test8() throws Exception {
         MAIN_PAGE.start();
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         WebElement element = webDriver.findElement(By.xpath("//INPUT[@aria-label='name']"));
         js.executeScript("arguments[0].scrollIntoView();", element);
         MAIN_PAGE.NAME_INPUT_GOOD();
-        MAIN_PAGE.EMAIL_INPUT();
-        MAIN_PAGE.TEL_INPUT();
         MAIN_PAGE.SUBMIT_BUTTON();
+        Boolean element1 = Boolean.valueOf(MAIN_PAGE.verifyElementAbsent());
+        Assert.assertEquals(element1,false);
+
     }
     @Test
     public void Test9(){
@@ -119,11 +122,40 @@ public class StepDefinitions {
         Assert.assertEquals(text,"Бесплатные мероприятия и материалы");
     }
     @Test
-    public void Test10() throws InterruptedException {
+    public void Test10() {
         MAIN_PAGE.start();
-        MAIN_PAGE.COOP_EDUCATION_BUTTON();
-        String text = webDriver.findElement(By.xpath("//H2[@class='tn-atom'][text()='Используйте свои ресурсы — эффективно']")).getText();
-        Assert.assertEquals(text, "Развивайте бизнес");
+        String text = webDriver.findElement(By.xpath("(//A[@href='tel:+74952910912'][text()='+7 495 291-09-12'])[2]")).getText();
+        Assert.assertEquals(text,"+7 495 291-09-12");
+
+
+    }
+    @Test
+    public void Test11(){
+        MAIN_PAGE.start();
+        MAIN_PAGE.COOP_BUTTON();
+        String text = webDriver.findElement(By.xpath("//IMG[@class='t228__imglogo t228__imglogomobile']")).getCssValue("display");
+        Assert.assertEquals(text,"block");
+
+    }
+    @Test
+    public void Test12(){
+        MAIN_PAGE.start();
+        FREE_PAGE.onlineCousButton();
+        MAIN_PAGE.STADY_BUTTON();
+        ArrayList<String> tabs2 = new ArrayList<String>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs2.get(1));
+        String text =  webDriver.findElement(By.xpath("//DIV[@class='tn-atom'][text()='Магистратура и ДПО']")).getText();
+        Assert.assertEquals(text,"Магистратура и ДПО");
+    }
+    @Test
+    public void Test13(){
+        MAIN_PAGE.start();
+        MAIN_PAGE.COOP_BUTTON();
+        webDriver.findElement(By.xpath("//A[@class='t-menu__link-item'][text()='Курсы']")).click();
+        ArrayList<String> tabs2 = new ArrayList<String>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs2.get(1));
+        String text = webDriver.findElement(By.xpath("//H1[@class='t795__title t-title t-title_xs t-margin_auto'][text()='Онлайн-курсы по IT-профессиям']")).getText();
+        Assert.assertEquals(text,"Онлайн-курсы по IT-профессиям");
     }
 }
 

@@ -11,6 +11,7 @@ public record freePage(WebDriver webDriver) {
     private final static String ANALITIK_DAN = "//SPAN[@class='t978__link-inner'][text()='Аналитика данных']";
     private final static String LOGO = "(//IMG[@class='tn-atom__img t-img loaded'])[9]";
     private final static String CLOSE_POPUP_BUTTON = "//body";
+    public static String COOP_URL = "https://new.skillfactory.ru/corporativnoye-obuchenye?_ga=2.215273616.607538396.1672844459-827315559.1672844459";
 
     public void  DATA_SCIENCE_BUTTON() {
          webDriver.findElement(By.xpath(DATA_SCIENCE_BUTTON)).click();
