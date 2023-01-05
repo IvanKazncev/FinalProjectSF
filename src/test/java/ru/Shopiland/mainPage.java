@@ -15,9 +15,13 @@ public record mainPage(WebDriver webDriver) {
     private static final String FREE_COURS_BUTTON = "//A[@class='tn-atom'][text()='Бесплатно']";
     private static final String STADY_BUTTON = "//SPAN[@class='t978__link-inner'][text()='Высшее образование (NEW)']";
     private static final String COOP_BUTTON = "//A[@class='tn-atom'][text()='Корпоративное обучение']";
+    private static final String GET_CONS_BUTTON = "(//A[@class='tn-atom'][text()='Получить консультацию'])[1]";
 
     public void start() {
         webDriver.get(URL);
+    }
+    public void GET_CONS_BUTTON(){
+        webDriver.findElement(By.xpath(GET_CONS_BUTTON)).click();
     }
     public void COOP_BUTTON(){
         webDriver.findElement(By.xpath(COOP_BUTTON)).click();
@@ -70,6 +74,12 @@ public record mainPage(WebDriver webDriver) {
     public boolean verifyElementAbsent() throws Exception {
 
         boolean visible = webDriver.findElement(By.xpath("(//DIV[@class='t-input-error'][text()='Обязательное поле'])[1]")).isDisplayed();
+        boolean result = !visible;
+        return result;
+    }
+    public boolean verifyElementAbsent1() throws Exception {
+
+        boolean visible = webDriver.findElement(By.xpath("(//INPUT[@type='text'])[5]")).isDisplayed();
         boolean result = !visible;
         return result;
     }
