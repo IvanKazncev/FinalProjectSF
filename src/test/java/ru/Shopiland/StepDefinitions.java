@@ -168,7 +168,7 @@ public class StepDefinitions {
         MAIN_PAGE.COOP_BUTTON();
         webDriver.findElement(By.xpath("//A[@class='t-menu__link-item'][text()='Курсы']")).click();
         ArrayList<String> tabs2 = new ArrayList<String>(webDriver.getWindowHandles());
-        webDriver.switchTo().window(tabs2.get(1));
+        webDriver.switchTo().window(tabs2.get(3));
         String text = webDriver.findElement(By.xpath("//H1[@class='t795__title t-title t-title_xs t-margin_auto'][text()='Онлайн-курсы по IT-профессиям']")).getText();
         assertEquals(text, "Онлайн-курсы по IT-профессиям");
     }
@@ -275,10 +275,6 @@ public class StepDefinitions {
 
     }
 
-    @After
-    public void AfterAll() {
-        webDriver.quit();
-    }
 }
 
 
