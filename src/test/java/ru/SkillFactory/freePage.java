@@ -1,4 +1,4 @@
-package ru.Shopiland;
+package ru.SkillFactory;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
